@@ -1,4 +1,4 @@
-package self;
+package self.alibaba;
 
 import java.util.ArrayList;
 import java.util.List;
