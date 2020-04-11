@@ -9,6 +9,7 @@ out/
 *.class
 *.swp
 .idea
+.idea/workspace.xml
 
 .project
 .settings
