@@ -3,5 +3,8 @@ package leetCode.entity;
 public class ListNode {
     int val;
     public ListNode next;
-    ListNode(int x) { val = x;}
+    ListNode(int x) {
+        val = x;
+        next = null;
+    }
 }
