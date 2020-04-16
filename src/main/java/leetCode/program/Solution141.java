@@ -34,7 +34,7 @@ import leetCode.entity.ListNode;
  * 你能用 O(1)（即，常量）内存解决此问题吗？
  *
  */
-public class Solutio141 {
+public class Solution141 {
 
     public boolean hasCycle(ListNode head) {
         if (head == null || head.next == null) {
