@@ -1,43 +1,44 @@
 package leetCode.program;
 
 /**
- * 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
+ * 编写一个算法来判断一个数 n 是不是快乐数。
  *
- * 示例 1：
+ * 「快乐数」定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果 可以变为  1，那么这个数就是快乐数。
  *
- * 输入: "babad"
- * 输出: "bab"
- * 注意: "aba" 也是一个有效答案。
+ * 如果 n 是快乐数就返回 True ；不是，则返回 False 。
  *
- * 示例 2：
  *
- * 输入: "cbbd"
- * 输出: "bb"
-
+ *
+ * 示例：
+ *
+ * 输入：19
+ * 输出：true
+ * 解释：
+ * 12 + 92 = 82
+ * 82 + 22 = 68
+ * 62 + 82 = 100
+ * 12 + 02 + 02 = 1
  *
  */
 public class Solution202 {
-    public String longestPalindrome(String s) {
-        if (s == null || s.length() < 1) return "";
-        int start = 0;
-        int end = 0;
-        for(int i =0; i< s.length(); i++){
-            int length1 = expandAroundCenter(s, i, i);
-            int length2 = expandAroundCenter(s, i, i+1);
-            int length = Math.max(length1, length2);
-            if (length > end -start){
-                start = i - (length-1)/2;
-                end = i + length/2;
-            }
+    public boolean isHappy(int n) {
+        int slower = n;
+        int faster = getNext(n);
+        while (faster != 1 && slower != faster){
+            slower = getNext(slower);
+            faster = getNext(getNext(faster));
         }
-        return s.substring(start, end+1);
+
+        return faster == 1;
     }
 
-    private int expandAroundCenter(String s, int left, int right) {
-        while (left >=0 && right < s.length() && s.charAt(left) == s.charAt(right)){
-            left --;
-            right ++;
+    private int getNext(int n){
+        int total = 0;
+        while (n >0){
+            int d = n %10;
+            n = n /10;
+            total += d *d;
         }
-        return right - left -1;
+        return total;
     }
 }
